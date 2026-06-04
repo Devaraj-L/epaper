@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+/>
+
+<title>Your Newspaper ePaper</title>
+
+<link
+rel="preconnect"
+href="https://fonts.googleapis.com"
+/>
+
+<link
+rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin
+/>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@700&display=swap"
+rel="stylesheet"
+/>
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+:root{
+
+--bg:#f5f1e8;
+--card:#ffffff;
+
+--primary:#111111;
+--secondary:#444;
+--border:#d9d2c7;
+
+--accent:#b40012;
+--gold:#b86b11;
+
+--shadow:
+0 10px 30px rgba(0,0,0,0.08);
+
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:'Inter',sans-serif;
+background:var(--bg);
+color:#111;
+overflow-x:hidden;
+
+}
+
+img{
+width:100%;
+display:block;
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+.container{
+
+max-width:1320px;
+margin:auto;
+padding:0 20px;
+
+}
+
+/* =========================
+HEADER
+========================= */
+
+.site-header{
+
+background:#f6f1e8;
+border-bottom:1px solid #d7d0c7;
+position:sticky;
+top:0;
+z-index:999;
+
+}
+
+.header-main{
+
+padding:20px 0;
+
+}
+
+.header-inner{
+
+display:grid;
+grid-template-columns:1fr auto 1fr;
+align-items:center;
+gap:20px;
+
+}
+
+.header-left{
+
+display:flex;
+align-items:center;
+gap:20px;
+flex-wrap:wrap;
+
+}
+
+.edition-select{
+
+display:flex;
+align-items:center;
+gap:12px;
+
+padding-right:20px;
+border-right:1px solid #ccc;
+
+}
+
+.edition-select select{
+
+border:none;
+background:none;
+font-size:17px;
+font-weight:700;
+outline:none;
+cursor:pointer;
+
+}
+
+.date-box{
+
+display:flex;
+align-items:center;
+gap:10px;
+
+color:#666;
+font-size:15px;
+
+}
+
+.logo{
+
+text-align:center;
+
+}
+
+.logo h1{
+
+font-size:54px;
+font-family:'Merriweather',serif;
+line-height:1;
+
+}
+
+.logo p{
+
+font-size:10px;
+letter-spacing:3px;
+margin-top:10px;
+font-weight:700;
+color:#666;
+
+}
+
+.header-right{
+
+display:flex;
+justify-content:flex-end;
+align-items:center;
+gap:20px;
+
+}
+
+.weather{
+
+padding:10px 14px;
+background:#fff;
+border:1px solid #ddd;
+border-radius:12px;
+
+font-size:14px;
+font-weight:600;
+
+}
+
+.social-icons{
+
+display:flex;
+gap:14px;
+
+}
+
+.social-icons a{
+
+font-size:18px;
+color:#666;
+transition:.3s;
+
+}
+
+.social-icons a:hover{
+
+color:var(--accent);
+
+}
+
+/* =========================
+NAVBAR
+========================= */
+
+.navbar{
+
+border-top:1px solid #ddd;
+border-bottom:1px solid #ddd;
+background:#f6f1e8;
+
+}
+
+.nav-inner{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:20px;
+
+padding:14px 0;
+
+}
+
+.nav-links{
+
+display:flex;
+gap:24px;
+flex-wrap:wrap;
+
+}
+
+.nav-links a{
+
+font-size:14px;
+font-weight:800;
+position:relative;
+
+}
+
+.nav-links a.active,
+.nav-links a:hover{
+
+color:var(--accent);
+
+}
+
+.search-box{
+
+position:relative;
+width:260px;
+
+}
+
+.search-box input{
+
+width:100%;
+padding:13px 14px 13px 42px;
+
+border-radius:999px;
+border:1px solid #ccc;
+
+outline:none;
+background:#fff;
+
+}
+
+.search-box i{
+
+position:absolute;
+left:16px;
+top:50%;
+transform:translateY(-50%);
+color:#777;
+
+}
+
+/* =========================
+BREAKING NEWS
+========================= */
+
+.breaking-news{
+
+background:#b40012;
+color:#fff;
+height:44px;
+
+display:flex;
+align-items:center;
+overflow:hidden;
+
+}
+
+.breaking-label{
+
+background:#8d000e;
+padding:0 20px;
+height:100%;
+
+display:flex;
+align-items:center;
+gap:10px;
+
+font-weight:800;
+font-size:14px;
+
+flex-shrink:0;
+
+}
+
+.breaking-wrapper{
+
+flex:1;
+overflow:hidden;
+position:relative;
+
+}
+
+.breaking-slider{
+
+display:flex;
+align-items:center;
+height:44px;
+
+white-space:nowrap;
+
+animation:slideNews 22s linear infinite;
+
+}
+
+.breaking-item{
+
+padding-left:60px;
+font-size:14px;
+font-weight:600;
+
+}
+
+@keyframes slideNews{
+
+0%{
+transform:translateX(100%);
+}
+
+100%{
+transform:translateX(-100%);
+}
+
+}
+
+/* =========================
+MAIN SECTION
+========================= */
+
+.main-section{
+
+padding:40px 0 70px;
+
+}
+
+.section-title{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+margin-bottom:25px;
+padding-bottom:14px;
+
+border-bottom:3px solid #222;
+
+gap:20px;
+
+}
+
+.section-title h2{
+
+font-size:42px;
+font-family:'Merriweather',serif;
+
+}
+
+.updated{
+
+background:#e8dfd6;
+padding:10px 14px;
+border-radius:8px;
+
+font-size:13px;
+font-weight:800;
+color:#666;
+
+}
+
+/* =========================
+TOP LAYOUT
+========================= */
+
+.layout-grid{
+
+display:grid;
+grid-template-columns:320px 1fr 320px;
+gap:26px;
+
+align-items:start;
+
+}
+
+/* =========================
+LEFT CARD
+========================= */
+
+.paper-card{
+
+background:#fff;
+padding:18px;
+
+box-shadow:var(--shadow);
+border-top:5px solid var(--gold);
+
+height:100%;
+
+}
+
+.paper-card h3{
+
+font-size:22px;
+margin-bottom:16px;
+font-family:'Merriweather',serif;
+
+}
+
+.paper-image{
+
+height:520px;
+overflow:hidden;
+border-radius:16px;
+background:#ddd;
+
+}
+
+.paper-image img{
+
+height:100%;
+object-fit:cover;
+
+}
+
+.paper-actions{
+
+display:flex;
+gap:12px;
+margin-top:18px;
+
+}
+
+.paper-btn{
+
+flex:1;
+
+padding:12px;
+border:none;
+
+
+font-size:13px;
+font-weight:600;
+cursor:pointer;
+
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+
+transition:.3s;
+
+}
+
+.read-btn{
+
+background:#b40012;
+color:#fff;
+
+}
+
+.download-btn{
+
+background:#222;
+color:#fff;
+
+}
+
+.paper-btn:hover{
+
+transform:translateY(-3px);
+
+}
+
+/* =========================
+CENTER FEATURE
+========================= */
+
+.feature-card{
+
+background:#fff;
+padding:22px;
+
+
+box-shadow:var(--shadow);
+border-top:5px solid #333;
+
+height:100%;
+
+}
+
+.feature-meta{
+
+display:flex;
+align-items:center;
+gap:12px;
+
+margin-bottom:20px;
+flex-wrap:wrap;
+
+}
+
+.badge{
+
+background:#f7ecd6;
+color:#b86b11;
+
+padding:8px 14px;
+
+
+font-size:12px;
+font-weight:800;
+
+}
+
+.feature-card h1{
+
+font-size:42px;
+line-height:1.25;
+font-family:'Merriweather',serif;
+
+margin-bottom:20px;
+
+}
+
+.feature-image{
+
+height:420px;
+overflow:hidden;
+border-radius:18px;
+
+margin-bottom:20px;
+
+}
+
+.feature-image img{
+
+height:100%;
+object-fit:cover;
+
+}
+
+.feature-bottom{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding-top:18px;
+border-top:2px solid #222;
+
+gap:20px;
+flex-wrap:wrap;
+
+}
+
+.read-link{
+
+font-weight:800;
+color:#111;
+border-bottom:3px solid #d89b21;
+padding-bottom:4px;
+
+}
+
+/* =========================
+RIGHT STORIES
+========================= */
+
+.story-card{
+
+background:#fff;
+padding:22px;
+border-top: 5px solid #d89b21;
+
+box-shadow:var(--shadow);
+
+height:100%;
+
+}
+
+.story-card h3{
+
+font-size:28px;
+font-family:'Merriweather',serif;
+
+margin-bottom:18px;
+
+}
+
+.story-item{
+
+padding:18px 0;
+border-bottom:1px solid #eee;
+
+}
+
+.story-item:last-child{
+
+border:none;
+
+}
+
+.story-category{
+
+font-size:11px;
+letter-spacing:2px;
+font-weight:800;
+color:#b40012;
+
+margin-bottom:10px;
+
+}
+
+.story-item h4{
+
+font-size:20px;
+line-height:1.4;
+
+margin-bottom:10px;
+
+}
+
+.story-item p{
+
+font-size:14px;
+color:#666;
+line-height:1.7;
+
+}
+
+/* =========================
+EDITIONS
+========================= */
+
+.editions-section{
+
+margin-top:60px;
+
+}
+
+.editions-grid{
+
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(280px,1fr));
+
+gap:24px;
+
+}
+
+.issue-card{
+
+background:#fff;
+
+
+overflow:hidden;
+
+box-shadow:var(--shadow);
+
+transition:.4s;
+
+position:relative;
+
+}
+
+.issue-card:hover{
+
+transform:translateY(-8px);
+
+}
+
+.thumb{
+
+height:400px;
+overflow:hidden;
+position:relative;
+
+}
+
+.thumb img{
+
+height:100%;
+object-fit:cover;
+
+transition:.4s;
+
+}
+
+.issue-card:hover img{
+
+transform:scale(1.05);
+
+}
+
+.thumb-overlay{
+
+position:absolute;
+inset:0;
+
+background:
+linear-gradient(
+to top,
+rgba(0,0,0,.75),
+transparent 60%
+);
+
+display:flex;
+align-items:flex-end;
+
+padding:20px;
+
+}
+
+.edition-label{
+
+color:#fff;
+font-size:22px;
+font-weight:800;
+
+}
+
+.page-count{
+
+position:absolute;
+top:16px;
+right:16px;
+
+background:#fff;
+padding:10px 14px;
+
+
+font-size:12px;
+font-weight:800;
+
+}
+
+.save-btn{
+
+position:absolute;
+top:16px;
+left:16px;
+
+width:46px;
+height:46px;
+
+border:none;
+border-radius:50%;
+
+background:#fff;
+cursor:pointer;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:18px;
+
+z-index:10;
+
+box-shadow:0 4px 10px rgba(0,0,0,.2);
+
+}
+
+.save-btn.saved{
+
+background:#b40012;
+color:#fff;
+
+}
+
+.info{
+
+padding:22px;
+
+}
+
+.info .date{
+
+font-size:13px;
+color:#666;
+margin-bottom:8px;
+
+}
+
+.info .edition{
+
+font-size:22px;
+font-weight:800;
+
+}
+
+/* =========================
+FOOTER
+========================= */
+
+footer{
+
+margin-top:70px;
+
+background:#111;
+color:#fff;
+
+padding:26px;
+text-align:center;
+
+}
+
+/* =========================
+TABLET
+========================= */
+
+@media(max-width:1100px){
+
+.layout-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.header-inner{
+
+grid-template-columns:1fr;
+text-align:center;
+
+}
+
+.header-left,
+.header-right{
+
+justify-content:center;
+
+}
+
+.logo h1{
+
+font-size:44px;
+
+}
+
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:768px){
+
+.container{
+
+padding:0 14px;
+
+}
+
+.header-main{
+
+padding:14px 0;
+
+}
+
+.logo h1{
+
+font-size:32px;
+
+}
+
+.logo p{
+
+font-size:8px;
+letter-spacing:2px;
+
+}
+
+.edition-select{
+
+border:none;
+padding-right:0;
+
+}
+
+.edition-select select{
+
+font-size:15px;
+
+}
+
+.nav-inner{
+
+flex-direction:column;
+align-items:stretch;
+margin-top:10px;
+
+}
+
+.nav-links{
+margin-top: 5px;
+gap:14px;
+justify-content:center;
+
+}
+
+.nav-links a{
+
+font-size:13px;
+
+}
+
+.search-box{
+padding: 10px 0;
+width:80%;
+margin-left: 10%;
+margin-bottom: 5px;
+margin-top: -5%;
+}
+
+.breaking-label{
+
+padding:0 14px;
+font-size:12px;
+
+}
+
+.breaking-item{
+
+font-size:12px;
+padding-left:30px;
+
+}
+
+.section-title{
+
+flex-direction:column;
+align-items:flex-start;
+
+}
+
+.section-title h2{
+
+font-size:28px;
+
+}
+
+.updated{
+
+font-size:11px;
+
+}
+
+.paper-card h3{
+
+font-size:18px;
+
+}
+
+.paper-image{
+
+height:360px;
+
+}
+
+.paper-actions{
+
+flex-direction:column;
+
+}
+
+.feature-card h1{
+
+font-size:28px;
+
+}
+
+.feature-image{
+
+height:250px;
+
+}
+
+.feature-bottom{
+
+flex-direction:column;
+align-items:flex-start;
+
+}
+
+.story-card h3{
+
+font-size:24px;
+
+}
+
+.story-item h4{
+
+font-size:18px;
+
+}
+
+.thumb{
+
+height:320px;
+
+}
+
+.info .edition{
+
+font-size:20px;
+
+}
+
+.weather{
+
+padding:10px 12px;
+font-size:12px;
+
+}
+
+.social-icons{
+
+gap:10px;
+
+}
+
+.social-icons a{
+
+font-size:16px;
+
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="site-header">
+
+<div class="container header-main">
+
+<div class="header-inner">
+
+<div class="header-left">
+
+<div class="edition-select">
+
+<i class="fa-regular fa-newspaper"></i>
+
+<select id="editionFilter">
+
+<option value="all">
+All Editions
+</option>
+
+<option value="mysuru">
+Mysuru Edition
+</option>
+
+<option value="bengaluru">
+Bengaluru Edition
+</option>
+
+<option value="hubballi">
+Hubballi Edition
+</option>
+
+</select>
+
+</div>
+
+<div class="date-box">
+
+<i class="fa-regular fa-calendar"></i>
+
+<span id="todayDate"></span>
+
+</div>
+
+</div>
+
+<div class="logo">
+
+<h1>YOUR NEWSPAPER</h1>
+
+<p>
+KARNATAKA'S RESPECTED PREMIER DAILY NEWSPAPER
+</p>
+
+</div>
+
+<div class="header-right">
+
+<div class="weather">
+
+ 34°C • Bengaluru
+
+</div>
+
+<div class="social-icons">
+
+<a href="#">
+<i class="fab fa-facebook-f"></i>
+</a>
+
+<a href="#">
+<i class="fab fa-instagram"></i>
+</a>
+
+<a href="#">
+<i class="fab fa-twitter"></i>
+</a>
+
+<a href="#">
+<i class="fab fa-youtube"></i>
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+<div class="container nav-inner">
+
+<div class="nav-links">
+
+<a href="#" class="active">
+HOME
+</a>
+
+<a href="#">
+MYSURU
+</a>
+
+<a href="#">
+BENGALURU
+</a>
+
+<a href="#">
+HUBBALLI
+</a>
+
+<a href="#">
+NATIONAL
+</a>
+
+<a href="#">
+INTERNATIONAL
+</a>
+
+<a href="#">
+SPORTS
+</a>
+
+<a href="#">
+BUSINESS
+</a>
+
+</div>
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search articles..."
+/>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- BREAKING NEWS -->
+
+<div class="breaking-news">
+
+<div class="breaking-label">
+
+BREAKING NEWS
+
+</div>
+
+<div class="breaking-wrapper">
+
+<div
+class="breaking-slider"
+id="breakingSlider"
+>
+
+<div class="breaking-item">
+Loading breaking headlines...
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- MAIN -->
+
+<section class="main-section">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>
+ePaper - TODAY'S EDITIONS
+</h2>
+
+<div class="updated">
+UPDATED DAILY: 06:00 AM
+</div>
+
+</div>
+
+<div class="layout-grid">
+
+<!-- LEFT -->
+
+<div class="paper-card">
+
+<h3>
+Printed Front Page Cover
+</h3>
+
+<div class="paper-image">
+
+<img
+id="featureImage"
+src="https://picsum.photos/600/900"
+alt=""
+/>
+
+</div>
+
+<div class="paper-actions">
+
+<button class="paper-btn read-btn">
+
+<i class="fa-regular fa-newspaper"></i>
+
+READ EPAPER
+
+</button>
+
+<button class="paper-btn download-btn">
+
+<i class="fa-solid fa-download"></i>
+
+DOWNLOAD PDF
+
+</button>
+
+</div>
+
+</div>
+
+<!-- CENTER -->
+
+<div class="feature-card">
+
+<div class="feature-meta">
+
+<div class="badge">
+TODAY
+</div>
+
+<div id="featureDate">
+May 29, 2026
+</div>
+
+</div>
+
+<h1 id="featureHeadline">
+
+Read Karnataka's latest digital newspaper editions
+
+</h1>
+
+<div class="feature-image">
+
+<img
+id="featureImage2"
+src="https://picsum.photos/900/500"
+alt=""
+/>
+
+</div>
+
+<div class="feature-bottom">
+
+<div>
+Read Time: 3 min read
+</div>
+
+<a
+href="#editions"
+class="read-link"
+>
+
+READ FULL ARTICLE →
+
+</a>
+
+</div>
+
+</div>
+
+<!-- RIGHT -->
+
+<div class="story-card">
+
+<h3>
+Top Stories Listing
+</h3>
+
+<div id="topStories">
+
+<div class="story-item">
+
+<div class="story-category">
+KARNATAKA
+</div>
+
+<h4>
+Loading stories...
+</h4>
+
+<p>
+Please wait...
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- EDITIONS -->
+
+<div
+class="editions-section"
+id="editions"
+>
+
+<div class="section-title">
+
+<h2>
+Today's ePaper Editions
+</h2>
+
+</div>
+
+<div
+class="editions-grid"
+id="issuesContainer"
+>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 Your Newspaper.
+All Rights Reserved.
+
+</footer>
+<script src="config.js"></script>
+<script>
+
+const API =
+CONFIG.API_URL + "/api/public";
+
+let allIssues = [];
+
+/* DATE */
+
+const now =
+new Date();
+
+document.getElementById(
+"todayDate"
+).innerText =
+now.toDateString();
+
+/* LOAD ISSUES */
+
+async function loadIssues(){
+
+try{
+
+const response =
+await fetch(API + "/issues");
+
+const data =
+await response.json();
+
+allIssues =
+data.issues || data;
+
+renderIssues(allIssues);
+
+loadBreakingNews(allIssues);
+
+loadTopStories(allIssues);
+
+loadFeature(allIssues);
+
+}
+
+catch(error){
+
+console.log(error);
+
+document
+.getElementById(
+"issuesContainer"
+)
+.innerHTML = `
+<h2>
+Failed to load issues
+</h2>
+`;
+
+}
+
+}
+
+/* RENDER ISSUES */
+
+function renderIssues(issues){
+
+const container =
+document.getElementById(
+"issuesContainer"
+);
+
+container.innerHTML = "";
+
+if(!issues.length){
+
+container.innerHTML =
+"<h2>No editions found</h2>";
+
+return;
+
+}
+
+issues.forEach(issue => {
+
+const imageUrl =
+issue.first_page
+? CONFIG.API_URL + issue.first_page
+: "https://picsum.photos/500/700";
+
+const savedIssues =
+JSON.parse(
+localStorage.getItem(
+"savedIssues"
+)
+) || [];
+
+const isSaved =
+savedIssues.includes(issue.id);
+
+container.innerHTML += `
+
+<a
+href="edition.html?issue=${issue.id}"
+class="issue-card"
+>
+
+<button
+class="save-btn ${isSaved ? 'saved' : ''}"
+onclick="saveIssue(event,${issue.id})"
+>
+
+<i class="fa-${isSaved ? 'solid' : 'regular'} fa-bookmark"></i>
+
+</button>
+
+<div class="thumb">
+
+<img
+src="${imageUrl}"
+alt="${issue.edition_name}"
+/>
+
+<div class="thumb-overlay">
+
+<div class="edition-label">
+
+${issue.edition_name}
+
+</div>
+
+</div>
+
+<div class="page-count">
+
+${issue.page_count || 0}
+Pages
+
+</div>
+
+</div>
+
+<div class="info">
+
+<div class="date">
+
+${formatDate(issue.issue_date)}
+
+</div>
+
+<div class="edition">
+
+${issue.edition_name}
+
+</div>
+
+</div>
+
+</a>
+
+`;
+
+});
+
+}
+
+/* BREAKING NEWS */
+
+function loadBreakingNews(issues){
+
+const slider =
+document.getElementById(
+"breakingSlider"
+);
+
+let headlines = [];
+
+issues.forEach(issue => {
+
+if(
+issue.breaking_headline &&
+issue.breaking_headline !== "NULL"
+){
+
+headlines.push(
+issue.breaking_headline
+.replace(/\*/g,'')
+);
+
+}
+
+});
+
+if(!headlines.length){
+
+headlines = [
+"Today's ePaper editions are live now"
+];
+
+}
+
+slider.innerHTML = "";
+
+headlines.forEach(headline => {
+
+slider.innerHTML += `
+
+<div class="breaking-item">
+
+${headline}
+
+</div>
+
+`;
+
+});
+
+}
+
+/* TOP STORIES */
+
+function loadTopStories(issues){
+
+const topStories =
+document.getElementById(
+"topStories"
+);
+
+topStories.innerHTML = "";
+
+issues.slice(0,4).forEach(issue => {
+
+topStories.innerHTML += `
+
+<div class="story-item">
+
+<div class="story-category">
+
+${issue.edition_name || 'NEWS'}
+
+</div>
+
+<h4>
+
+${issue.breaking_headline
+? issue.breaking_headline.replace(/\*/g,'')
+: 'Read today newspaper edition'}
+
+</h4>
+
+<p>
+
+Latest digital newspaper edition
+available now for reading.
+
+</p>
+
+</div>
+
+`;
+
+});
+
+}
+
+/* FEATURE */
+
+function loadFeature(issues){
+
+if(!issues.length) return;
+
+const issue =
+issues[0];
+
+const imageUrl =
+issue.first_page
+? CONFIG.API_URL + issue.first_page
+: "https://picsum.photos/900/500";
+
+document.getElementById(
+"featureImage"
+).src = imageUrl;
+
+document.getElementById(
+"featureImage2"
+).src = imageUrl;
+
+document.getElementById(
+"featureDate"
+).innerText =
+formatDate(issue.issue_date);
+
+document.getElementById(
+"featureHeadline"
+).innerText =
+issue.breaking_headline
+? issue.breaking_headline.replace(/\*/g,'')
+: "Read today's latest ePaper edition";
+
+}
+
+/* SAVE ISSUE */
+
+function saveIssue(event,id){
+
+event.preventDefault();
+
+const btn =
+event.currentTarget;
+
+btn.classList.toggle(
+"saved"
+);
+
+const icon =
+btn.querySelector("i");
+
+let saved =
+JSON.parse(
+localStorage.getItem(
+"savedIssues"
+)
+) || [];
+
+if(saved.includes(id)){
+
+saved =
+saved.filter(
+item => item !== id
+);
+
+icon.className =
+"fa-regular fa-bookmark";
+
+}
+
+else{
+
+saved.push(id);
+
+icon.className =
+"fa-solid fa-bookmark";
+
+}
+
+localStorage.setItem(
+"savedIssues",
+JSON.stringify(saved)
+);
+
+}
+
+/* SEARCH */
+
+document
+.getElementById(
+"searchInput"
+)
+.addEventListener(
+"input",
+function(){
+
+const value =
+this.value.toLowerCase();
+
+const filtered =
+allIssues.filter(issue => {
+
+return (
+(issue.edition_name || '')
+.toLowerCase()
+.includes(value)
+
+||
+
+(issue.breaking_headline || '')
+.toLowerCase()
+.includes(value)
+
+);
+
+});
+
+renderIssues(filtered);
+
+}
+);
+
+/* EDITION FILTER */
+
+document
+.getElementById(
+"editionFilter"
+)
+.addEventListener(
+"change",
+function(){
+
+const value =
+this.value;
+
+if(value === "all"){
+
+renderIssues(allIssues);
+return;
+
+}
+
+const filtered =
+allIssues.filter(issue => {
+
+return (
+issue.slug &&
+issue.slug.toLowerCase()
+.includes(value)
+);
+
+});
+
+renderIssues(filtered);
+
+}
+);
+
+/* DATE FORMAT */
+
+function formatDate(dateString){
+
+const date =
+new Date(dateString);
+
+return date.toLocaleDateString(
+'en-IN',
+{
+day:'2-digit',
+month:'long',
+year:'numeric'
+}
+);
+
+}
+
+/* INIT */
+
+loadIssues();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8"/>
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+/>
+
+<title>Interactive ePaper Reader</title>
+
+<!-- GOOGLE FONTS -->
+
+<link
+rel="preconnect"
+href="https://fonts.googleapis.com"
+/>
+
+<link
+rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin
+/>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@700&display=swap"
+rel="stylesheet"
+/>
+
+<!-- FONT AWESOME -->
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+<!-- JQUERY -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- MAPSTER -->
+
+<script src="js/jquery.imagemapster.min.js"></script>
+
+<style>
+
+/* =========================================
+GLOBAL
+========================================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+:root{
+
+--bg:#f5f1e8;
+--card:#ffffff;
+
+--primary:#111827;
+--secondary:#666;
+
+--accent:#b40012;
+--gold:#f08a00;
+
+--dark:#161616;
+--dark2:#1f2937;
+
+--border:#ddd4c8;
+
+--shadow:
+0 10px 30px rgba(0,0,0,0.08);
+
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:'Inter',sans-serif;
+background:var(--bg);
+color:#111;
+overflow-x:hidden;
+
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+img{
+width:100%;
+display:block;
+}
+
+.container{
+
+max-width:1500px;
+margin:auto;
+padding:0 20px;
+
+}
+
+/* =========================================
+TOP BLACK BAR
+========================================= */
+
+.top-black{
+
+background:#111;
+border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.top-black-inner{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:14px 0;
+
+gap:20px;
+
+}
+
+.top-left{
+
+font-size:12px;
+font-weight:700;
+
+letter-spacing:1px;
+
+color:#d7d7d7;
+
+}
+
+.top-links{
+
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+
+}
+
+.top-links a{
+
+padding:11px 18px;
+
+border-radius:10px;
+
+background:#1f1f1f;
+
+font-size:13px;
+font-weight:700;
+
+color:#fff;
+
+transition:.3s;
+
+}
+
+.top-links a.active{
+
+background:#f08a00;
+color:#111;
+
+}
+
+.top-links a:hover{
+
+transform:translateY(-2px);
+
+}
+
+/* =========================================
+SECOND HEADER
+========================================= */
+
+.reader-header{
+
+background:
+linear-gradient(
+90deg,
+#2a1308,
+#1d0f09
+);
+
+padding:18px 0;
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.reader-inner{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+gap:20px;
+flex-wrap:wrap;
+
+}
+
+.reader-left{
+
+display:flex;
+align-items:center;
+gap:18px;
+
+}
+
+.back-link{
+
+display:flex;
+align-items:center;
+gap:10px;
+
+font-size:15px;
+font-weight:800;
+
+color:#ffb347;
+
+}
+
+.logo-mini{
+
+width:42px;
+height:42px;
+
+border-radius:10px;
+
+background:#f08a00;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:24px;
+font-family:'Merriweather',serif;
+font-weight:700;
+
+color:#111;
+
+}
+
+.reader-right{
+
+display:flex;
+align-items:center;
+gap:14px;
+flex-wrap:wrap;
+
+}
+
+.edition-badge{
+
+padding:10px 18px;
+
+border-radius:10px;
+
+background:
+rgba(255,166,0,.08);
+
+border:
+1px solid rgba(255,166,0,.25);
+
+font-size:13px;
+font-weight:800;
+
+letter-spacing:1px;
+
+color:#ffb347;
+
+}
+
+.portal-btn{
+
+padding:12px 18px;
+
+border-radius:10px;
+
+background:
+rgba(255,255,255,.08);
+
+border:
+1px solid rgba(255,255,255,.08);
+
+font-size:14px;
+font-weight:700;
+
+color:#fff;
+
+display:flex;
+align-items:center;
+gap:10px;
+
+}
+
+/* =========================================
+BREADCRUMB BAR
+========================================= */
+
+.breadcrumb-inner{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:20px;
+  padding:14px 0;
+}
+
+.issue-date{
+  justify-self:start;
+  font-size:14px;
+  font-weight:600;
+  color:#666;
+  margin-left: 2%;
+}
+
+.newspaper-brand{
+  text-align:center;
+}
+
+.newspaper-brand h2{
+  margin:0;
+  font-size:24px;
+  font-family:'Merriweather',serif;
+  color:#111827;
+  letter-spacing:1px;
+}
+
+.newspaper-brand span{
+  display:block;
+  margin-top:4px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:2px;
+  color:#aca5a5;
+  text-transform:uppercase;
+}
+
+.back-btn{
+  justify-self:end;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:#111827;
+  color:#fff;
+  padding:10px 18px;
+  border-radius:8px;
+  font-size:14px;
+  font-weight:400;
+  transition:.3s;
+  margin-right: 2%;
+}
+
+.back-btn:hover{
+  background:#f08a00;
+  color:#111;
+}
+/* =========================================
+TOOLS BAR
+========================================= */
+
+.tools-bar{
+
+background:#111827;
+
+padding:16px 0;
+
+}
+
+.tools-inner{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+gap:20px;
+flex-wrap:wrap;
+
+}
+
+.tools-left{
+
+display:flex;
+align-items:center;
+gap:14px;
+flex-wrap:wrap;
+
+}
+
+.jump-label{
+
+font-size:13px;
+font-weight:800;
+
+letter-spacing:2px;
+
+color:#c5c5c5;
+
+}
+
+.page-select{
+
+padding:13px 16px;
+
+border-radius:10px;
+
+background:#fff;
+
+border:none;
+outline:none;
+
+font-size:14px;
+font-weight:700;
+
+min-width:180px;
+
+}
+
+.page-nav{
+
+display:flex;
+align-items:center;
+gap:12px;
+
+}
+
+.nav-btn{
+
+padding:12px 18px;
+
+border:none;
+cursor:pointer;
+
+
+background:#2c3448;
+color:#fff;
+
+font-size:14px;
+font-weight:700;
+
+transition:.3s;
+
+}
+
+.nav-btn:hover{
+
+background:#f08a00;
+color:#111;
+
+}
+
+.page-count{
+
+padding:8px 14px;
+
+
+
+background:#1b2130;
+
+border:1px solid #f08a00;
+
+font-weight:800;
+color:#f08a00;
+
+}
+
+.zoom-controls{
+
+display:flex;
+align-items:center;
+gap:10px;
+
+}
+
+.zoom-controls span{
+
+font-size:13px;
+font-weight:800;
+
+color:#ccc;
+
+}
+
+.zoom-btn{
+
+width:40px;
+height:40px;
+
+border:none;
+cursor:pointer;
+
+
+background:#2c3448;
+color:#fff;
+
+font-size:18px;
+font-weight:700;
+
+}
+
+/* =========================================
+MAIN LAYOUT
+========================================= */
+
+.main-layout{
+
+display:grid;
+
+grid-template-columns:
+260px 1fr;
+
+gap:24px;
+
+padding:24px 0 40px;
+
+align-items:start;
+
+}
+
+/* =========================================
+SIDEBAR
+========================================= */
+
+.thumb-sidebar{
+
+background:#ebe4d8;
+
+border:1px solid #c8bfb1;
+
+
+
+padding:18px;
+
+position:sticky;
+top:20px;
+
+max-height:calc(100vh - 40px);
+
+overflow-y:auto;
+
+}
+
+.sidebar-title{
+
+font-size:13px;
+font-weight:800;
+
+letter-spacing:2px;
+
+text-align:center;
+
+padding-bottom:16px;
+
+margin-bottom:18px;
+
+border-bottom:1px solid #cfc6b9;
+
+color:#666;
+
+}
+
+.thumb-sidebar::-webkit-scrollbar{
+width:6px;
+}
+
+.thumb-sidebar::-webkit-scrollbar-thumb{
+background:#bbb;
+
+}
+
+.thumb-side-item{
+
+background:#fff;
+
+border:1px solid #ddd;
+
+
+
+overflow:hidden;
+
+margin-bottom:16px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.thumb-side-item.active{
+
+border:2px solid #f08a00;
+
+box-shadow:
+0 6px 18px rgba(240,138,0,.25);
+
+}
+
+.thumb-side-item:hover{
+
+transform:translateY(-3px);
+
+}
+
+.thumb-label{
+
+padding:12px;
+
+text-align:center;
+
+font-size:12px;
+font-weight:800;
+
+letter-spacing:1px;
+
+border-bottom:1px solid #eee;
+
+background:#fafafa;
+
+}
+
+.thumb-side-item img{
+
+height:180px;
+object-fit:cover;
+
+}
+
+/* =========================================
+PAGE AREA
+========================================= */
+
+.page-area{
+
+background:#f6f2eb;
+
+border:1px solid #d3cabd;
+
+
+
+padding:24px;
+
+overflow:hidden;
+
+}
+
+.page-top{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+gap:20px;
+flex-wrap:wrap;
+
+margin-bottom:10px;
+
+}
+
+.page-title{
+
+font-size:10px;
+font-family:'Merriweather',serif;
+
+display:flex;
+align-items:center;
+gap:14px;
+
+}
+
+.page-title span{
+
+font-size:5px;
+font-family:'Inter',sans-serif;
+
+padding:8px 8px;
+
+
+background:#f6e6c5;
+
+border:1px solid #e2c27d;
+
+color:#a56d00;
+
+font-weight:800;
+
+}
+
+.page-image-box{
+
+border:2px solid #392b21;
+
+
+
+overflow:hidden;
+
+background:#fff;
+
+}
+
+.page-image-box img{
+
+width:100%;
+height:auto;
+
+display:block;
+
+}
+
+/* =========================================
+BOTTOM NAV
+========================================= */
+
+.bottom-nav{
+
+margin-top:24px;
+
+padding-top:20px;
+
+border-top:1px solid #d9cec0;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+gap:20px;
+flex-wrap:wrap;
+
+}
+
+.bottom-nav span{
+
+font-size:15px;
+font-weight:700;
+color:#555;
+
+}
+
+/* =========================================
+RESPONSIVE
+========================================= */
+
+@media(max-width:1100px){
+
+.main-layout{
+
+grid-template-columns:1fr;
+
+}
+
+.thumb-sidebar{
+
+position:relative;
+top:0;
+
+display:flex;
+
+gap:16px;
+
+overflow-x:auto;
+overflow-y:hidden;
+
+max-height:none;
+
+}
+
+.thumb-side-item{
+
+min-width:150px;
+margin-bottom:0;
+
+flex:none;
+
+}
+
+}
+
+@media(max-width:768px){
+ .breadcrumb-inner{
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+
+  .issue-date{
+    justify-self:center;
+    margin-top: 8px;
+  }
+
+  .newspaper-brand h2{
+    font-size:18px;
+  }
+
+  .newspaper-brand span{
+    font-size:9px;
+    letter-spacing:1px;
+  }
+
+
+.back-btn{
+  justify-self:end;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:#111827;
+  color:#fff;
+  padding:8px 14px;
+  border-radius:2px;
+  font-size:8px;
+  font-weight:700;
+  margin-bottom: 4px;
+  transition:.3s;
+}
+
+.back-btn:hover{
+  background:#f08a00;
+  color:#111;
+}
+
+.container{
+
+padding:0 14px;
+
+}
+
+
+
+/* NAV */
+
+.tools-left,
+.page-nav{
+
+width:100%;
+
+}
+
+.page-nav{
+
+justify-content:space-between;
+
+}
+
+.nav-btn{
+
+flex:1;
+
+}
+
+/* PAGE */
+
+.page-title{
+
+font-size:24px;
+line-height:1.3;
+
+flex-direction:column;
+align-items:flex-start;
+
+}
+
+.page-title span{
+
+font-size:11px;
+
+}
+
+/* SIDEBAR */
+
+.thumb-sidebar{
+
+padding:12px;
+
+}
+
+.thumb-side-item{
+
+min-width:120px;
+
+}
+
+.thumb-side-item img{
+
+height:100px;
+
+}
+
+/* PAGE AREA */
+
+.page-area{
+
+padding:14px;
+
+
+
+}
+
+.page-image-box{
+
+
+
+overflow:auto;
+
+}
+
+/* IMAGE */
+
+.page-image-box img{
+
+width:100%;
+height:auto;
+
+object-fit:contain;
+
+}
+
+/* BOTTOM */
+
+.bottom-nav{
+
+flex-direction:row;
+padding: 5px 6px;
+
+}
+
+.bottom-nav .nav-btn{
+
+width:30%;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.logo-mini{
+
+width:36px;
+height:36px;
+
+font-size:18px;
+
+}
+
+.page-title{
+
+font-size:20px;
+
+}
+
+.page-select{
+
+width:100%;
+min-width:100%;
+
+}
+
+.thumb-side-item{
+
+min-width:100px;
+
+}
+
+.thumb-side-item img{
+
+height:80px;
+
+}
+
+}
+
+/* =========================================
+LOADER
+========================================= */
+
+.loader{
+
+padding:80px 20px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:16px;
+font-weight:700;
+
+color:#666;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+
+<div class="top-black">
+
+</div>
+
+<!-- BREADCRUMB -->
+<!-- BREADCRUMB -->
+
+<div class="breadcrumb-bar">
+
+  <div class="container breadcrumb-inner">
+
+    <!-- LEFT -->
+
+    <div class="issue-date">
+      <i class="fa-regular fa-calendar"></i>
+      Issue Date: 26 May 2026
+    </div>
+
+    <!-- CENTER -->
+
+    <div class="newspaper-brand">
+
+      <h2>YOUR NEWSPAPER</h2>
+
+      <span>
+        KARNATAKA'S RESPECTED PREMIER DAILY NEWSPAPER
+      </span>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <a
+      href="javascript:history.back()"
+      class="back-btn"
+    >
+      
+      Back
+    </a>
+
+  </div>
+
+</div>
+
+<!-- TOOLS -->
+
+<div class="tools-bar">
+
+<div class="container tools-inner">
+
+<div class="tools-left">
+
+<div class="jump-label">
+JUMP TO PAGE:
+</div>
+
+<select
+id="pageSelect"
+class="page-select"
+onchange="goToPage(this.value)"
+>
+</select>
+
+</div>
+
+<div class="page-nav">
+
+<button
+class="nav-btn"
+onclick="prevPage()"
+>
+Prev Page
+</button>
+
+<div class="page-count">
+
+<span id="curPage">
+1
+</span>
+
+/
+
+<span id="totalPages">
+1
+</span>
+
+</div>
+
+<button
+class="nav-btn"
+onclick="nextPage()"
+>
+Next Page
+</button>
+
+</div>
+
+<div class="zoom-controls">
+
+<span>ZOOM:</span>
+
+<button
+class="zoom-btn"
+onclick="zoomOut()"
+>
+-
+</button>
+
+<button
+class="zoom-btn"
+onclick="zoomIn()"
+>
++
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="container">
+
+<div class="main-layout">
+
+<!-- SIDEBAR -->
+
+<div
+class="thumb-sidebar"
+id="thumbSidebar"
+>
+
+<div class="sidebar-title">
+PAGES
+</div>
+
+</div>
+
+<!-- PAGE AREA -->
+
+<div class="page-area">
+
+<div class="page-top">
+
+<h1 class="page-title">
+
+PAGE
+<span id="pageNumberText">
+01
+</span>
+
+</h1>
+
+</div>
+
+<div class="page-image-box">
+
+<map
+name="epapermap"
+id="epapermap"
+>
+</map>
+
+<img
+id="mapImage"
+usemap="#epapermap"
+src=""
+alt="ePaper Page"
+/>
+
+</div>
+
+<div class="bottom-nav">
+
+<button
+class="nav-btn"
+onclick="prevPage()"
+>
+Previous
+</button>
+
+<span>
+
+Page
+
+<strong id="curPage2">
+1
+</strong>
+
+of
+
+<strong id="totalPages2">
+1
+</strong>
+
+</span>
+
+<button
+class="nav-btn"
+onclick="nextPage()"
+>
+Next
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<script src="config.js"></script>
+<script>
+
+const API =
+CONFIG.API_URL + "/api/public";
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+const issueId =
+params.get("issue");
+
+let pages = [];
+
+let currentPage = 1;
+
+let zoomLevel = 1;
+
+/* =========================================
+LOAD PAGES
+========================================= */
+
+async function loadPages(){
+
+try{
+
+const response =
+await fetch(
+API + "/pages/" + issueId
+);
+
+const data =
+await response.json();
+
+pages =
+data.pages || data;
+
+if(!pages.length){
+
+document.querySelector(
+".page-area"
+).innerHTML = `
+<div class="loader">
+No pages found
+</div>
+`;
+
+return;
+
+}
+
+document.getElementById(
+"totalPages"
+).innerText =
+pages.length;
+
+document.getElementById(
+"totalPages2"
+).innerText =
+pages.length;
+
+renderSidebar();
+
+renderPageSelect();
+
+loadPage(1);
+
+}
+
+catch(error){
+
+console.log(error);
+
+alert(
+"Failed to load pages"
+);
+
+}
+
+}
+
+/* =========================================
+PAGE SELECT
+========================================= */
+
+function renderPageSelect(){
+
+const select =
+document.getElementById(
+"pageSelect"
+);
+
+select.innerHTML = "";
+
+pages.forEach(page => {
+
+select.innerHTML += `
+
+<option value="${page.page_number}">
+
+Page ${page.page_number}
+
+</option>
+
+`;
+
+});
+
+}
+
+/* =========================================
+SIDEBAR
+========================================= */
+
+function renderSidebar(){
+
+const sidebar =
+document.getElementById(
+"thumbSidebar"
+);
+
+pages.forEach(page => {
+
+sidebar.innerHTML += `
+
+<div
+class="thumb-side-item"
+onclick="goToPage(${page.page_number})"
+>
+
+<div class="thumb-label">
+
+PAGE ${page.page_number}
+
+</div>
+
+<img
+src="${CONFIG.API_URL}${page.image_url}"
+alt=""
+>
+
+</div>
+
+`;
+
+});
+
+}
+
+/* =========================================
+LOAD PAGE
+========================================= */
+
+async function loadPage(pageNo){
+
+currentPage =
+Number(pageNo);
+
+document
+.querySelectorAll(
+".thumb-side-item"
+)
+.forEach(item => {
+
+item.classList.remove(
+"active"
+);
+
+});
+
+const active =
+document.querySelector(
+`.thumb-side-item:nth-child(${pageNo + 1})`
+);
+
+if(active){
+
+active.classList.add(
+"active"
+);
+
+}
+
+const page =
+pages.find(
+p =>
+p.page_number == pageNo
+);
+
+if(!page){
+
+return;
+
+}
+
+document.getElementById(
+"curPage"
+).innerText =
+pageNo;
+
+document.getElementById(
+"curPage2"
+).innerText =
+pageNo;
+
+document.getElementById(
+"pageNumberText"
+).innerText =
+String(pageNo).padStart(2,'0');
+
+document.getElementById(
+"pageSelect"
+).value =
+pageNo;
+
+const image =
+document.getElementById(
+"mapImage"
+);
+
+image.onload =
+async () => {
+
+await loadClippings(page.id);
+
+};
+
+image.src =
+CONFIG.API_URL + page.image_url;
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+
+}
+
+/* =========================================
+LOAD CLIPPINGS
+========================================= */
+
+async function loadClippings(pageId){
+
+try{
+
+const response =
+await fetch(
+CONFIG.API_URL + "/api/clippings/page/" +
+pageId
+);
+
+const data =
+await response.json();
+
+const map =
+document.getElementById(
+"epapermap"
+);
+
+map.innerHTML = "";
+
+if(!data.clippings){
+
+return;
+
+}
+
+data.clippings.forEach(clip => {
+
+const x1 =
+clip.crop_x;
+
+const y1 =
+clip.crop_y;
+
+const x2 =
+clip.crop_x +
+clip.crop_w;
+
+const y2 =
+clip.crop_y +
+clip.crop_h;
+
+map.innerHTML += `
+
+<area
+shape="rect"
+coords="${x1},${y1},${x2},${y2}"
+href="news.html?id=${clip.id}"
+target="_self"
+>
+
+`;
+
+});
+
+applyMapster();
+
+}
+
+catch(error){
+
+console.log(error);
+
+}
+
+}
+
+/* =========================================
+MAPSTER
+========================================= */
+
+function applyMapster(){
+
+if(!$.fn.mapster){
+
+return;
+
+}
+
+const image =
+$("#mapImage");
+
+try{
+
+image.mapster("unbind");
+
+}catch(e){}
+
+image.mapster({
+
+fillColor:"f08a00",
+
+fillOpacity:0.35,
+
+stroke:true,
+
+strokeColor:"b40012",
+
+strokeOpacity:0.9,
+
+strokeWidth:2,
+
+singleSelect:true,
+
+mapKey:"href",
+
+scaleMap:true,
+
+clickNavigate:true,
+
+render_highlight:{
+
+fillOpacity:0.45,
+stroke:true
+
+}
+
+});
+
+}
+
+/* =========================================
+NAVIGATION
+========================================= */
+
+function goToPage(page){
+
+loadPage(
+Number(page)
+);
+
+}
+
+function nextPage(){
+
+if(currentPage < pages.length){
+
+loadPage(
+currentPage + 1
+);
+
+}
+
+}
+
+function prevPage(){
+
+if(currentPage > 1){
+
+loadPage(
+currentPage - 1
+);
+
+}
+
+}
+
+/* =========================================
+ZOOM
+========================================= */
+
+function zoomIn(){
+
+zoomLevel += 0.1;
+
+document.getElementById(
+"mapImage"
+).style.transform =
+`scale(${zoomLevel})`;
+
+}
+
+function zoomOut(){
+
+if(zoomLevel > 0.6){
+
+zoomLevel -= 0.1;
+
+document.getElementById(
+"mapImage"
+).style.transform =
+`scale(${zoomLevel})`;
+
+}
+
+}
+
+/* =========================================
+RESIZE FIX
+========================================= */
+
+window.addEventListener(
+"resize",
+() => {
+
+applyMapster();
+
+}
+);
+
+/* =========================================
+INIT
+========================================= */
+
+loadPages();
+
+</script>
+
+</body>
+
+</html>

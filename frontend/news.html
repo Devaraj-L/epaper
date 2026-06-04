@@ -1,0 +1,913 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>News Article - ePaper</title>
+
+<link
+rel="preconnect"
+href="https://fonts.googleapis.com"
+/>
+
+<link
+rel="preconnect"
+href="https://fonts.gstatic.com"
+crossorigin
+/>
+
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@700&display=swap"
+rel="stylesheet"
+/>
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+:root{
+
+--bg:#f5f1e8;
+--card:#ffffff;
+
+--primary:#111111;
+--secondary:#444444;
+
+--accent:#b40012;
+--gold:#b86b11;
+
+--border:#d9d2c7;
+
+--shadow:
+0 10px 30px rgba(0,0,0,.08);
+
+}
+
+body{
+
+font-family:'Inter',sans-serif;
+
+background:var(--bg);
+
+color:#111;
+
+overflow-x:hidden;
+
+}
+
+a{
+text-decoration:none;
+color:inherit;
+}
+
+img{
+width:100%;
+display:block;
+}
+
+/* =========================
+HEADER
+========================= */
+
+.site-header{
+
+background:#f6f1e8;
+
+border-bottom:1px solid #d7d0c7;
+
+position:sticky;
+top:0;
+z-index:999;
+
+}
+
+.header-inner{
+
+max-width:1300px;
+
+margin:auto;
+
+padding:18px 20px;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+}
+
+.logo{
+
+display:flex;
+align-items:center;
+gap:14px;
+
+}
+
+.logo-icon{
+
+width:52px;
+height:52px;
+
+border-radius:50%;
+
+background:#111;
+
+color:white;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-weight:800;
+font-size:22px;
+
+}
+
+.logo-text h1{
+
+font-family:'Merriweather',serif;
+
+font-size:28px;
+
+}
+
+.logo-text p{
+
+font-size:11px;
+
+letter-spacing:2px;
+
+color:#666;
+
+margin-top:4px;
+
+}
+
+.back-btn{
+
+padding:8px 18px;
+
+background:#111;
+
+color:white;
+
+border-radius:2px;
+
+font-weight:700;
+
+transition:.3s;
+
+}
+
+.back-btn:hover{
+
+background:var(--accent);
+
+}
+
+/* =========================
+PAGE
+========================= */
+
+.news-page{
+
+max-width:1200px;
+
+margin:auto;
+
+padding:40px 20px 60px;
+
+}
+
+/* =========================
+CARD
+========================= */
+
+.news-card{
+
+background:white;
+
+border-top:6px solid var(--gold);
+
+box-shadow:var(--shadow);
+
+overflow:hidden;
+
+}
+
+/* =========================
+TOP META
+========================= */
+
+.news-header{
+
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+
+gap:15px;
+
+padding:10px;
+
+background:white;
+
+border-bottom:1px solid #eee;
+
+}
+.edition{
+
+font-size:12px;
+
+letter-spacing:1px;
+
+font-weight:800;
+
+color:var(--accent);
+
+margin-bottom:2px;
+
+text-transform:uppercase;
+
+}
+.headline{
+
+font-size:30px;
+
+line-height:1.4;
+
+font-family:'Merriweather',serif;
+
+margin-bottom:2px;
+
+max-width:850px;
+
+}
+.headline::after{
+
+content:"";
+
+display:block;
+
+width:90px;
+height:4px;
+
+background:var(--accent);
+
+margin-top:18px;
+
+}
+
+.news-date{
+
+color:#666;
+
+font-size:14px;
+
+}
+
+/* =========================
+IMAGE AREA
+========================= */
+
+.news-image-wrap{
+
+padding:24px;
+
+background:#faf7f0;
+
+}
+
+.image-box{
+
+background:#fff;
+
+padding:15px;
+
+
+border:1px solid var(--border);
+
+box-shadow:
+0 15px 35px rgba(0,0,0,.08);
+
+}
+
+.image-box img{
+
+width:100%;
+
+height:auto;
+
+display:block;
+
+
+object-fit:contain;
+
+}
+
+.image-box:hover img{
+
+transform:scale(1.02);
+
+}
+
+/* =========================
+FLOATING ACTIONS
+========================= */
+
+.floating-actions{
+
+position:absolute;
+
+top:18px;
+right:18px;
+
+display:flex;
+gap:10px;
+
+z-index:10;
+
+}
+
+.action-btn{
+
+width:46px;
+height:46px;
+
+border:none;
+
+border-radius:50%;
+
+background:white;
+
+color:#111;
+
+font-size:18px;
+
+cursor:pointer;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+box-shadow:
+0 4px 15px rgba(0,0,0,.15);
+
+transition:.3s;
+
+}
+
+.action-btn:hover{
+
+background:var(--accent);
+
+color:white;
+
+transform:translateY(-3px);
+
+}
+
+/* =========================
+SOCIAL ICONS
+========================= */
+.social-section{
+
+display:flex;
+
+justify-content:center;
+
+gap:12px;
+
+padding:20px 0 5px;
+
+}
+.social-floating{
+
+position:absolute;
+
+right:18px;
+bottom:18px;
+
+display:flex;
+gap:8px;
+
+z-index:10;
+
+}
+
+.social-btn{
+
+width:40px;
+height:40px;
+
+border-radius:50%;
+
+background:#111;
+
+color:white;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+text-decoration:none;
+
+transition:.3s;
+
+}
+.social-btn:hover{
+
+background:#b40012;
+
+transform:translateY(-3px);
+
+}
+
+
+/* =========================
+NO IMAGE
+========================= */
+
+.no-image{
+
+padding:120px 20px;
+
+text-align:center;
+
+color:#666;
+
+font-weight:600;
+
+}
+
+.header-actions{
+
+display:flex;
+
+gap:10px;
+
+flex-shrink:0;
+
+}
+.header-btn{
+
+width:42px;
+height:42px;
+
+border:none;
+
+border-radius:50%;
+
+background:#111;
+
+color:#fff;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+.header-btn:hover{
+
+background:#b40012;
+
+transform:translateY(-3px);
+
+}
+/* =========================
+PRINT
+========================= */
+
+@media print{
+
+.site-header,
+.floating-actions,
+.social-floating{
+
+display:none !important;
+
+}
+
+body{
+background:white;
+}
+
+.news-card{
+box-shadow:none;
+}
+
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:768px){
+
+.news-page{
+
+padding:0px 1px 0px;
+
+}
+
+.headline{
+font-size:14px;
+}
+
+.logo-text h1{
+
+font-size:22px;
+
+}
+
+.logo-text p{
+
+font-size:9px;
+
+}
+
+.floating-actions{
+
+top:10px;
+right:10px;
+
+}
+
+.action-btn{
+
+width:40px;
+height:40px;
+
+font-size:16px;
+
+}
+
+.social-btn{
+
+width:34px;
+height:34px;
+
+font-size:14px;
+
+}
+.news-header{
+
+flex-direction:column;
+
+}
+
+.header-actions{
+
+width:100%;
+
+justify-content:flex-end;
+
+}
+
+.header-btn{
+
+width:38px;
+height:38px;
+
+}
+
+.social-btn{
+
+width:34px;
+height:34px;
+
+font-size:13px;
+
+}
+
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="header-inner">
+
+<div class="logo">
+
+<div class="logo-text">
+
+<h1>YOUR NEWSPAPER</h1>
+
+<p>
+PREMIUM DIGITAL EPAPER
+</p>
+
+</div>
+
+</div>
+
+<a
+href="javascript:history.back()"
+class="back-btn"
+>
+Back
+</a>
+
+</div>
+
+</header>
+
+<div class="news-page">
+
+<div class="news-card">
+
+<div class="news-header">
+
+<div
+class="edition"
+id="newsEdition"
+>
+BENGALURU EDITION
+<div
+class="news-date"
+id="newsDate"
+>
+May 30, 2026
+</div>
+</div>
+
+<h1
+class="headline"
+id="headline"
+>
+Newspaper Article
+</h1>
+
+
+<div class="header-actions">
+
+<button
+class="header-btn"
+onclick="window.print()">
+<i class="fa-solid fa-print"></i>
+</button>
+
+<button
+class="header-btn"
+onclick="shareNews()">
+<i class="fa-solid fa-share-nodes"></i>
+</button>
+
+<a
+id="downloadBtn"
+class="header-btn"
+download>
+<i class="fa-solid fa-download"></i>
+</a>
+
+</div>
+
+</div>
+
+<div class="news-image-wrap">
+
+<div class="image-box">
+
+<img
+id="newsImage"
+src=""
+alt="News Article"
+/>
+
+<div
+id="noImage"
+class="no-image"
+style="display:none;"
+>
+News image not available
+</div>
+
+</div>
+<div class="social-section">
+
+<a href="#" class="social-btn">
+<i class="fab fa-facebook-f"></i>
+</a>
+
+<a href="#" class="social-btn">
+<i class="fab fa-x-twitter"></i>
+</a>
+
+<a href="#" class="social-btn">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<a href="#" class="social-btn">
+<i class="fab fa-linkedin-in"></i>
+</a>
+
+<a href="#" class="social-btn">
+<i class="fa-solid fa-envelope"></i>
+</a>
+
+</div>
+</div>
+
+</div>
+
+</div>
+<script src="config.js"></script>
+<script>
+
+const API =CONFIG.API_URL + "/api/public";
+
+const params =
+new URLSearchParams(
+window.location.search
+);
+
+const id =
+params.get("id");
+
+/* =========================
+LOAD NEWS
+========================= */
+
+async function loadNews(){
+
+try{
+
+const response =
+await fetch(
+API + "/clipping/" + id
+);
+
+const data =
+await response.json();
+
+if(!data.success){
+
+alert("News not found");
+
+return;
+
+}
+
+const clip =
+data.clipping;
+
+const imageUrl =
+CONFIG.API_URL + clip.clipping_image_url;
+
+/* IMAGE */
+
+document
+.getElementById(
+"newsImage"
+)
+.src =
+imageUrl;
+
+/* DOWNLOAD */
+
+document
+.getElementById(
+"downloadBtn"
+)
+.href =
+imageUrl;
+
+/* EDITION */
+
+if(clip.edition_name){
+
+document
+.getElementById(
+"newsEdition"
+)
+.innerText =
+clip.edition_name;
+
+}
+
+/* DATE */
+
+if(clip.issue_date){
+
+document
+.getElementById(
+"newsDate"
+)
+.innerText =
+formatDate(
+clip.issue_date
+);
+
+}
+
+/* HEADLINE */
+
+if(
+clip.headline ||
+clip.title
+){
+
+document
+.getElementById(
+"headline"
+)
+.innerText =
+clip.headline ||
+clip.title;
+
+}
+
+}
+catch(err){
+
+console.log(err);
+
+}
+
+}
+
+/* =========================
+FORMAT DATE
+========================= */
+
+function formatDate(dateString){
+
+const date =
+new Date(dateString);
+
+return date.toLocaleDateString(
+'en-IN',
+{
+day:'2-digit',
+month:'long',
+year:'numeric'
+}
+);
+
+}
+
+/* =========================
+SHARE
+========================= */
+
+function shareNews(){
+
+if(navigator.share){
+
+navigator.share({
+
+title:"ePaper News",
+
+text:"Read this article",
+
+url:window.location.href
+
+});
+
+}
+else{
+
+navigator.clipboard.writeText(
+window.location.href
+);
+
+alert(
+"Link copied"
+);
+
+}
+
+}
+
+/* =========================
+START
+========================= */
+
+loadNews();
+
+</script>
+
+</body>
+</html>

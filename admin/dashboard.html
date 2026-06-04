@@ -1,0 +1,1724 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ePaper Admin Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+<style>
+  *{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Inter',sans-serif;
+}
+
+:root{
+
+  --bg:#f5f1e8;
+  --card:#ffffff;
+
+  --primary:#111111;
+  --secondary:#444444;
+
+  --accent:#b40012;
+  --gold:#b86b11;
+
+  --border:#d9d2c7;
+
+  --shadow:
+  0 10px 30px rgba(0,0,0,.08);
+
+}
+
+body{
+  background:var(--bg);
+  color:var(--primary);
+}
+
+/* =========================
+LAYOUT
+========================= */
+
+.layout{
+  display:flex;
+  min-height:100vh;
+}
+
+/* =========================
+SIDEBAR
+========================= */
+
+.sidebar{
+
+  width:280px;
+
+  background:#111;
+
+  color:white;
+
+  padding:25px;
+
+  border-right:4px solid var(--gold);
+
+  position:sticky;
+  top:0;
+
+  height:100vh;
+
+}
+
+.sidebar h2{
+
+  font-size:28px;
+
+  margin-bottom:30px;
+
+  color:white;
+
+  border-bottom:2px solid rgba(255,255,255,.15);
+
+  padding-bottom:15px;
+
+  font-family:'Merriweather',serif;
+
+}
+
+.sidebar button{
+
+  width:100%;
+
+  padding:15px 18px;
+
+  border:none;
+
+  background:transparent;
+
+  color:white;
+
+  margin-bottom:10px;
+
+  border-left:4px solid transparent;
+
+  cursor:pointer;
+
+  text-align:left;
+
+  font-size:15px;
+
+  font-weight:700;
+
+  transition:.3s;
+
+}
+
+.sidebar button:hover{
+
+  background:rgba(255,255,255,.08);
+
+  border-left-color:var(--accent);
+
+}
+
+/* =========================
+MAIN
+========================= */
+
+.main{
+
+  flex:1;
+
+  padding:30px;
+
+}
+
+/* =========================
+CARD
+========================= */
+
+.card{
+
+  background:white;
+
+  padding:25px;
+
+  margin-bottom:25px;
+
+  border-top:5px solid var(--gold);
+
+  box-shadow:var(--shadow);
+
+}
+
+/* =========================
+FORMS
+========================= */
+
+.form-group{
+
+  margin-bottom:20px;
+
+}
+
+.form-group label{
+
+  display:block;
+
+  margin-bottom:8px;
+
+  font-weight:700;
+
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+
+  width:100%;
+
+  padding:14px;
+
+  border:1px solid var(--border);
+
+  background:white;
+
+  outline:none;
+
+  font-size:15px;
+
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+
+  border-color:var(--accent);
+
+}
+
+textarea{
+
+  resize:none;
+
+}
+
+/* =========================
+BUTTONS
+========================= */
+
+.btn{
+
+  padding:12px 22px;
+
+  border:none;
+
+  cursor:pointer;
+
+  font-weight:700;
+
+  transition:.3s;
+
+}
+
+.btn:hover{
+
+  transform:translateY(-2px);
+
+}
+
+.btn-primary{
+
+  background:var(--accent);
+
+  color:white;
+
+}
+
+.btn-success{
+
+  background:var(--gold);
+
+  color:white;
+
+}
+
+.btn-danger{
+
+  background:#111;
+
+  color:white;
+
+}
+
+/* =========================
+GRIDS
+========================= */
+
+.page-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fill,minmax(260px,1fr));
+
+  gap:22px;
+
+}
+
+.stats-grid{
+
+  display:grid;
+
+  grid-template-columns:
+  repeat(auto-fit,minmax(220px,1fr));
+
+  gap:22px;
+
+}
+
+/* =========================
+STAT BOX
+========================= */
+
+.stat-box{
+
+  background:white;
+
+  padding:30px 20px;
+
+  text-align:center;
+
+  border-top:5px solid var(--accent);
+
+  box-shadow:var(--shadow);
+
+}
+
+.stat-box h2{
+
+  font-size:42px;
+
+  color:var(--accent);
+
+  margin-bottom:10px;
+
+  font-weight:800;
+
+}
+
+.stat-box p{
+
+  color:#666;
+
+  font-weight:600;
+
+}
+
+/* =========================
+PAGE CARD
+========================= */
+
+.page-card{
+
+  background:white;
+
+  overflow:hidden;
+
+  border-top:4px solid var(--gold);
+
+  box-shadow:var(--shadow);
+
+  transition:.3s;
+
+}
+
+.page-card:hover{
+
+  transform:translateY(-6px);
+
+}
+
+.page-card img{
+
+  width:100%;
+
+  height:260px;
+
+  object-fit:cover;
+
+}
+
+.page-card-content{
+
+  padding:18px;
+
+}
+
+.page-card-content h3{
+
+  margin-bottom:10px;
+
+  font-size:20px;
+
+}
+
+.page-card-content p{
+
+  margin-bottom:8px;
+
+  color:#666;
+
+  line-height:1.6;
+
+}
+
+.actions{
+
+  display:flex;
+
+  gap:10px;
+
+  margin-top:15px;
+
+}
+
+/* =========================
+MAPPER
+========================= */
+
+#mapperContainer{
+
+  position:relative;
+
+  display:inline-block;
+
+  max-width:100%;
+
+  overflow:auto;
+
+  border:3px solid var(--gold);
+
+  background:white;
+
+}
+
+#mapperImage{
+
+  max-width:100%;
+
+  display:block;
+
+}
+
+.clip{
+
+  position:absolute;
+
+  border:2px solid var(--accent);
+
+  background:
+  rgba(180,0,18,.18);
+
+}
+
+.clip-number{
+
+  position:absolute;
+
+  top:-12px;
+  left:-12px;
+
+  width:24px;
+  height:24px;
+
+  border-radius:50%;
+
+  background:var(--accent);
+
+  color:white;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:11px;
+
+  font-weight:700;
+
+}
+
+/* =========================
+HEADINGS
+========================= */
+
+.card h2{
+
+  font-family:'Merriweather',serif;
+
+  color:#111;
+
+}
+
+/* =========================
+UTILITY
+========================= */
+
+.hidden{
+  display:none;
+}
+
+/* =========================
+TABLET
+========================= */
+
+@media(max-width:1024px){
+
+  .layout{
+    flex-direction:column;
+  }
+
+  .sidebar{
+
+    width:100%;
+
+    height:auto;
+
+    position:relative;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    align-items:center;
+
+    border-right:none;
+
+    border-bottom:4px solid var(--gold);
+
+  }
+
+  .sidebar h2{
+
+    width:100%;
+
+    margin-bottom:10px;
+
+  }
+
+  .sidebar button{
+
+    width:auto;
+
+    flex:1;
+
+    min-width:180px;
+
+  }
+
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:768px){
+
+  .main{
+    padding:15px;
+  }
+
+  .sidebar{
+    padding:15px;
+  }
+
+  .sidebar button{
+
+    width:100%;
+
+    flex:none;
+
+  }
+
+  .card{
+    padding:18px;
+  }
+
+  .stats-grid{
+    grid-template-columns:1fr;
+  }
+
+  .page-grid{
+    grid-template-columns:1fr;
+  }
+
+  .page-card img{
+    height:220px;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .btn{
+    width:100%;
+  }
+
+  #mapperContainer{
+    width:100%;
+  }
+
+  #mapperImage{
+    width:100%;
+  }
+
+}
+  </style>
+
+</head>
+
+<body>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<h2>ePaper Admin</h2>
+
+<button onclick="showTab('dashboard')">
+Dashboard
+</button>
+
+<button onclick="showTab('upload')">
+Upload ePaper
+</button>
+
+<button onclick="showTab('mapper')">
+News Mapper
+</button>
+
+<button onclick="showTab('issues')">
+All Issues
+</button>
+
+</div>
+
+<!-- MAIN -->
+
+<div class="main">
+
+<!-- DASHBOARD -->
+
+<div id="dashboardTab">
+
+<div class="card">
+
+<h2 style="margin-bottom:20px;">
+Dashboard Overview
+</h2>
+
+<div class="stats-grid">
+
+<div class="stat-box">
+<h2 id="totalIssues">0</h2>
+<p>Total Issues</p>
+</div>
+
+<div class="stat-box">
+<h2 id="totalPages">0</h2>
+<p>Total Pages</p>
+</div>
+
+<div class="stat-box">
+<h2 id="totalViews">0</h2>
+<p>Total Views</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2 style="margin-bottom:20px;">
+Recent Published Papers
+</h2>
+
+<div
+class="page-grid"
+id="recentIssues">
+</div>
+
+</div>
+
+</div>
+
+<!-- UPLOAD -->
+
+<div
+id="uploadTab"
+class="hidden">
+
+<div class="card">
+
+<h2 style="margin-bottom:20px;">
+Upload ePaper
+</h2>
+
+<div class="form-group">
+
+<label>Edition</label>
+
+<select id="edition">
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Date & Time</label>
+
+<input
+type="datetime-local"
+id="issueDate">
+
+</div>
+
+<div class="form-group">
+
+<label>Breaking Headline</label>
+
+<textarea
+id="breakingHeadline"
+rows="3"
+placeholder="Enter breaking headline">
+</textarea>
+
+</div>
+
+<div class="form-group">
+
+<label>Select Multiple Pages</label>
+
+<input
+type="file"
+id="pagesInput"
+multiple
+accept="image/*">
+
+</div>
+
+<div
+class="page-grid"
+id="selectedPages">
+</div>
+
+<br>
+
+<button
+class="btn btn-primary"
+onclick="uploadIssue()">
+
+Upload ePaper
+
+</button>
+
+</div>
+
+</div>
+
+<!-- MAPPER -->
+
+<div
+id="mapperTab"
+class="hidden">
+
+<div class="card">
+
+<h2 style="margin-bottom:20px;">
+News Mapper
+</h2>
+
+<div class="form-group">
+
+<label>Select Issue</label>
+
+<select
+id="issueSelect"
+onchange="loadIssuePages()">
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label>Select Page</label>
+
+<select
+id="pageSelect"
+onchange="changePage()">
+</select>
+
+</div>
+
+<button
+class="btn btn-success"
+onclick="saveClippings()">
+
+Save Clippings
+
+</button>
+
+<button
+class="btn btn-danger"
+onclick="clearClips()">
+
+Clear
+
+</button>
+
+</div>
+
+<div class="card">
+
+<div id="mapperContainer">
+
+<img id="mapperImage">
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ISSUES -->
+
+<div
+id="issuesTab"
+class="hidden">
+
+<div class="card">
+
+<h2 style="margin-bottom:20px;">
+All Issues
+</h2>
+
+<div
+class="page-grid"
+id="issuesList">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<script src="config.js"></script>
+<script>
+
+const API = CONFIG.API_URL +'/api';
+
+const token = localStorage.getItem("epaper_token");
+if (!token) {
+  alert("Session expired. Please login again.");
+  window.location.href = "login.html";
+}
+
+let pagesData = [];
+let clips = [];
+
+let drawing = false;
+
+let startX = 0;
+let startY = 0;
+
+let currentClip = null;
+
+const mapperContainer =
+document.getElementById("mapperContainer");
+
+const mapperImage =
+document.getElementById("mapperImage");
+
+/* =====================================
+TAB
+===================================== */
+
+function showTab(tab){
+
+[
+"dashboard",
+"upload",
+"mapper",
+"issues"
+].forEach(id => {
+
+document
+.getElementById(id + "Tab")
+.classList.add("hidden");
+
+});
+
+document
+.getElementById(tab + "Tab")
+.classList.remove("hidden");
+
+}
+
+/* =====================================
+LOAD EDITIONS DYNAMICALLY
+===================================== */
+
+async function loadEditions(){
+
+try{
+
+const response =
+await fetch(API + "/editions");
+
+const data =
+await response.json();
+
+const editions =
+data.editions;
+
+const editionSelect =
+document.getElementById("edition");
+
+editionSelect.innerHTML = "";
+
+editions.forEach(edition => {
+
+editionSelect.innerHTML += `
+
+<option value="${edition.id}">
+${edition.name}
+</option>
+
+`;
+
+});
+
+}
+
+catch(err){
+
+console.log(err);
+
+}
+
+}
+
+/* =====================================
+LOAD DASHBOARD
+===================================== */
+
+async function loadDashboard(){
+
+try{
+
+const response =
+await fetch(API + "/issues/dashboard/stats");
+
+const data =
+await response.json();
+console.log(data.recentIssues);
+document.getElementById(
+"totalIssues"
+).innerText =
+data.totalIssues || 0;
+
+document.getElementById(
+"totalPages"
+).innerText =
+data.totalPages || 0;
+
+document.getElementById(
+"totalViews"
+).innerText =
+data.totalViews || 0;
+
+let html = "";
+
+data.recentIssues.forEach(issue => {
+  console.log("Issue:", issue);
+  console.log("First Page:", issue.first_page);
+html += `
+
+<div class="page-card">
+
+<img
+src="${CONFIG.API_URL}${issue.first_page}"
+>
+
+<div class="page-card-content">
+
+<h3>
+${issue.edition_name}
+</h3>
+
+<p>
+${formatDate(issue.issue_date)}
+</p>
+
+<p>
+${issue.breaking_headline || ""}
+</p>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+document.getElementById(
+"recentIssues"
+).innerHTML = html;
+
+}
+
+catch(err){
+
+console.log(err);
+
+}
+
+}
+
+/* =====================================
+FORMAT DATE
+===================================== */
+
+function formatDate(dateString){
+
+const date =
+new Date(dateString);
+
+return date.toLocaleString(
+"en-IN",
+{
+day:"2-digit",
+month:"short",
+year:"numeric",
+hour:"2-digit",
+minute:"2-digit"
+}
+);
+
+}
+
+/* =====================================
+LOAD ISSUES
+===================================== */
+
+async function loadIssues(){
+
+try{
+
+const response =
+await fetch(API + "/issues");
+
+const data =
+await response.json();
+
+const issues =
+data.issues;
+
+const issuesList =
+document.getElementById("issuesList");
+
+const issueSelect =
+document.getElementById("issueSelect");
+
+issuesList.innerHTML = "";
+
+issueSelect.innerHTML = "";
+
+issues.forEach(issue => {
+
+issuesList.innerHTML += `
+
+<div class="page-card">
+
+<img
+src="${CONFIG.API_URL}${issue.first_page}"
+>
+
+<div class="page-card-content">
+
+<h3>
+${issue.edition_name}
+</h3>
+
+<p>
+${formatDate(issue.issue_date)}
+</p>
+
+<p>
+${issue.page_count} Pages
+</p>
+
+<p>
+${issue.breaking_headline || ""}
+</p>
+
+<div class="actions">
+
+<button
+class="btn btn-primary"
+onclick="editIssue(${issue.id})">
+Edit
+</button>
+
+<button
+class="btn btn-danger"
+onclick="deleteIssue(${issue.id})">
+Delete
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+issueSelect.innerHTML += `
+
+<option value="${issue.id}">
+
+${issue.edition_name}
+-
+${formatDate(issue.issue_date)}
+
+</option>
+
+`;
+
+});
+
+}
+
+catch(err){
+
+console.log(err);
+
+}
+
+}
+
+/* =====================================
+UPLOAD ISSUE
+===================================== */
+
+async function uploadIssue(){
+
+try{
+
+const edition =
+document.getElementById("edition").value;
+
+const issueDate =
+document.getElementById("issueDate").value;
+
+const breakingHeadline =
+document.getElementById(
+"breakingHeadline"
+).value;
+
+const files =
+document.getElementById(
+"pagesInput"
+).files;
+
+if(!files.length){
+
+alert("Select pages");
+
+return;
+
+}
+
+const formData =
+new FormData();
+
+formData.append(
+"edition_id",
+edition
+);
+
+formData.append(
+"issue_date",
+issueDate
+);
+
+formData.append(
+"breaking_headline",
+breakingHeadline
+);
+
+for(let file of files){
+
+formData.append(
+"pages",
+file
+);
+
+}
+
+const response =
+await fetch(
+API + "/issues/upload",
+{
+method:"POST",
+
+headers:{
+Authorization:
+"Bearer " + token
+},
+
+body:formData
+}
+);
+
+const data =
+await response.json();
+
+if(!data.success){
+
+alert(data.message);
+
+return;
+
+}
+
+alert(
+"Issue Uploaded Successfully"
+);
+
+document.getElementById(
+"pagesInput"
+).value = "";
+
+document.getElementById(
+"breakingHeadline"
+).value = "";
+
+document.getElementById(
+"selectedPages"
+).innerHTML = "";
+
+loadIssues();
+
+loadDashboard();
+
+showTab("issues");
+
+}
+
+catch(err){
+
+console.log(err);
+
+alert("Upload Failed");
+
+}
+
+}
+
+/* =====================================
+DELETE ISSUE
+===================================== */
+
+async function deleteIssue(id){
+
+if(
+!confirm("Delete this issue?")
+) return;
+
+try{
+
+const response =
+await fetch(
+API + "/issues/" + id,
+{
+method:"DELETE",
+
+headers:{
+Authorization:
+"Bearer " + token
+}
+}
+);
+
+const data =
+await response.json();
+
+alert(data.message);
+
+loadIssues();
+
+loadDashboard();
+
+}
+
+catch(err){
+
+console.log(err);
+
+}
+
+}
+
+/* =====================================
+EDIT ISSUE
+===================================== */
+
+async function editIssue(id){
+
+const headline =
+prompt(
+"Enter headline"
+);
+
+if(headline == null)
+return;
+
+const issueDate =
+prompt(
+"Enter Date Time",
+"2026-05-29 10:30"
+);
+
+try{
+
+const response =
+await fetch(
+API + "/issues/" + id,
+{
+method:"PUT",
+
+headers:{
+"Content-Type":
+"application/json",
+
+Authorization:
+"Bearer " + token
+},
+
+body:JSON.stringify({
+
+breaking_headline:headline,
+issue_date:issueDate
+
+})
+}
+);
+
+const data =
+await response.json();
+
+alert(data.message);
+
+loadIssues();
+
+loadDashboard();
+
+}
+
+catch(err){
+
+console.log(err);
+
+}
+
+}
+
+/* =====================================
+PAGE PREVIEW
+===================================== */
+
+document
+.getElementById("pagesInput")
+.addEventListener(
+"change",
+function(e){
+
+const files = e.target.files;
+
+let html = "";
+
+for(let i=0;i<files.length;i++){
+
+html += `
+
+<div class="page-card">
+
+<img
+src="${URL.createObjectURL(
+files[i]
+)}"
+>
+
+<div class="page-card-content">
+
+<h3>
+Page ${i+1}
+</h3>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+document.getElementById(
+"selectedPages"
+).innerHTML = html;
+
+}
+);
+
+/* =====================================
+LOAD ISSUE PAGES
+===================================== */
+
+async function loadIssuePages(){
+
+clearClips();
+
+const issueId =
+document.getElementById(
+"issueSelect"
+).value;
+
+const response =
+await fetch(
+API + "/public/pages/" + issueId
+);
+
+const data =
+await response.json();
+
+pagesData =
+data.pages;
+
+const pageSelect =
+document.getElementById(
+"pageSelect"
+);
+
+pageSelect.innerHTML = "";
+
+pagesData.forEach(page => {
+
+pageSelect.innerHTML += `
+
+<option value="${page.id}">
+
+Page ${page.page_number}
+
+</option>
+
+`;
+
+});
+
+if(pagesData.length){
+
+loadPageImage(
+pagesData[0]
+);
+
+}
+
+}
+
+/* =====================================
+LOAD PAGE IMAGE
+===================================== */
+
+function loadPageImage(page){
+
+mapperImage.src =
+`${CONFIG.API_URL}` +
+page.image_url;
+
+}
+
+/* =====================================
+CHANGE PAGE
+===================================== */
+
+function changePage(){
+
+clearClips();
+
+const pageId =
+document.getElementById(
+"pageSelect"
+).value;
+
+const page =
+pagesData.find(
+p => p.id == pageId
+);
+
+if(!page) return;
+
+loadPageImage(page);
+
+}
+
+/* =====================================
+DRAW CLIPS
+===================================== */
+
+mapperContainer.addEventListener(
+"mousedown",
+function(e){
+
+if(!mapperImage.src)
+return;
+
+drawing = true;
+
+const rect =
+mapperImage.getBoundingClientRect();
+
+startX =
+e.clientX - rect.left;
+
+startY =
+e.clientY - rect.top;
+
+currentClip =
+document.createElement("div");
+
+currentClip.className =
+"clip";
+
+currentClip.style.left =
+startX + "px";
+
+currentClip.style.top =
+startY + "px";
+
+mapperContainer.appendChild(
+currentClip
+);
+
+}
+);
+
+mapperContainer.addEventListener(
+"mousemove",
+function(e){
+
+if(!drawing) return;
+
+const rect =
+mapperImage.getBoundingClientRect();
+
+const currentX =
+e.clientX - rect.left;
+
+const currentY =
+e.clientY - rect.top;
+
+const width =
+currentX - startX;
+
+const height =
+currentY - startY;
+
+currentClip.style.width =
+Math.abs(width) + "px";
+
+currentClip.style.height =
+Math.abs(height) + "px";
+
+currentClip.style.left =
+(width < 0
+? currentX
+: startX) + "px";
+
+currentClip.style.top =
+(height < 0
+? currentY
+: startY) + "px";
+
+}
+);
+
+mapperContainer.addEventListener(
+"mouseup",
+function(){
+
+if(!drawing) return;
+
+drawing = false;
+
+const imgRect =
+mapperImage.getBoundingClientRect();
+
+const clipRect =
+currentClip.getBoundingClientRect();
+
+const scaleX =
+mapperImage.naturalWidth /
+mapperImage.clientWidth;
+
+const scaleY =
+mapperImage.naturalHeight /
+mapperImage.clientHeight;
+
+const x =
+Math.round(
+(clipRect.left - imgRect.left)
+* scaleX
+);
+
+const y =
+Math.round(
+(clipRect.top - imgRect.top)
+* scaleY
+);
+
+const w =
+Math.round(
+clipRect.width * scaleX
+);
+
+const h =
+Math.round(
+clipRect.height * scaleY
+);
+
+if(w < 20 || h < 20){
+
+currentClip.remove();
+
+return;
+
+}
+
+clips.push({x,y,w,h});
+
+const num =
+document.createElement("div");
+
+num.className =
+"clip-number";
+
+num.innerText =
+clips.length;
+
+currentClip.appendChild(num);
+
+}
+);
+
+/* =====================================
+CLEAR CLIPS
+===================================== */
+
+function clearClips(){
+
+clips = [];
+
+document
+.querySelectorAll(".clip")
+.forEach(el => el.remove());
+
+}
+
+/* =====================================
+SAVE CLIPPINGS
+===================================== */
+
+async function saveClippings(){
+
+try{
+
+const pageId =
+document.getElementById(
+"pageSelect"
+).value;
+
+if(!clips.length){
+
+alert("No clips selected");
+
+return;
+
+}
+
+const response =
+await fetch(
+API + "/clippings/" + pageId,
+{
+method:"POST",
+
+headers:{
+"Content-Type":
+"application/json",
+
+Authorization:
+"Bearer " + token
+},
+
+body:JSON.stringify({
+clippings:clips
+})
+}
+);
+
+const data =
+await response.json();
+
+alert(data.message);
+
+}
+
+catch(err){
+
+console.log(err);
+
+alert("Save Failed");
+
+}
+
+}
+
+/* =====================================
+AUTO LOAD
+===================================== */
+
+loadDashboard();
+
+loadIssues();
+
+loadEditions();
+
+</script>
+
+</body>
+</html>
